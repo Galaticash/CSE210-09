@@ -1,11 +1,11 @@
-# CSE210-09
+# Week 9 - Cycle Design
 ## Team Members: Ashley, Hailey, John, Matt, Ethan
 
 ## Cycle Game
 Cycle is a game where the players try to cut each other off using cycles that leave a trail behind them.
 
 # TODO: Design
-## Team Members in attendance 6/16: 
+## Team Members in attendance 6/16 (Designing): 
 Requirements:
 - Players can move up, down, left and right...
   - Player one moves using the W, S, A and D keys.
