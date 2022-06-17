@@ -1,0 +1,168 @@
+Meeting 6/16
+Members Present: Ashley, Hailey
+
+TODO: Split responsibilities, grouping similar classes together, even workload
+TODO: Figure out more base classes
+    - Actor (xy positions, xy velocity, symbol, color, etc)
+    - Message (text, position, font size, color, etc)
+
+Question:
+    Player/Cycle and the Trail (children classes)
+        - same method move() that is an override method, overrides the empty Actor's move method
+        - differently used (trail follows the player, while the player gets player_input)
+
+Actor (base)
+    - virutal method, can be overridden
+    - move(self): 
+        return notimplementederror
+
+Classes (16!)
+
+(setup)
+Class name
+What it does:
+Inherits from:
+Attributes, things it has:
+    - 
+Methods, things it does:
+    - 
+
+- - - - -
+(Main/base classes, used in all the programs)
+
+Director 1
+In charge of directing the game
+(doesn't inherit)
+Attribtues:
+    - Game over
+    - Cast (which is only the two players)
+Methods:
+    - Start game
+    - Update
+    - End game
+
+Cast 2
+Attribtues:
+    - Player 1
+    - Player 2 (change the starging location and the score's position)
+Methods:
+    - create player/actor
+
+--> split the director class into smaller classes
+
+Collision handler 12
+TODO: New collision handler per collision
+OR one collision handler, just does the methods/math calculations
+Attribtues:
+    - 
+Methods:
+    - Calculate hitbox range (figures out where the edges are )
+    - If objects are colliding
+
+Move Actors 13
+Attribtues:
+    - Cast
+Methods:
+    - Moves all the actors within the cast 
+
+Message 14
+Attributes:
+    - The text to display
+    - location to display it
+Methods:
+    - getter (so the GUI can know what to write and where)
+        - The GUI needs Message, x_pos, y_pos
+
+Graphic Interface/GUI - Window 3
+In charge of visually showing whats going on
+(doesn't inherit) import pyray
+Attributes:
+    - width
+    - height
+    - Frames per second
+Methods:
+    - 
+
+Point (previously using [x, y]) 4
+Attributes:
+    - x coordinate
+    - y coordinate
+Does:
+    - Lots of methods (see professor's)
+        - Equals
+        - Get x
+        - Get y
+
+Color (previously pyray.colors) 5
+Attributes:
+    - color rbg
+Does:
+
+Actor
+(base class)
+Attributes:
+    - [x,y] position
+    - velocity
+
+Score 6
+(Can inherit from Message - inherits text/message, position to display, etc) 
+imported into the Player/Cycle class
+Attributes:
+    - int score
+Methods:
+    - Add points
+
+Grid 7
+Attributes:
+    - [x,y] position on the screen (translates the position to grid spot)
+    - 
+
+Player Interface 8
+Attributes:
+    - Key_set
+Methods:
+    - get direction
+        - pyray.is_key_down(key_set.get_up_key())
+
+
+-   -   -   -   -
+(Unique to the Cycle game (basically the snake game))
+
+
+Key_set 9
+Attribtues:
+    - Up_key - W or I
+    - Down_key
+    - Left_key
+    - Right_key
+
+Methods:
+    - get_up_key (return self._up_key)
+    ... getter for each one
+
+Player --> Cycle 10
+# --> @#####
+Inherits from Actor
+Initialized parameters:
+    - key_set
+Attribtues:
+    - Player's symbol ""
+    - trail_pieces = []
+    - Score
+    - Player Interface 
+        - Player 1 - key_set(WASD)
+        - Player 2 - key_set(IJKL)
+Methods:
+    - add_trail_piece() (called when )
+    - move -> gets player input to decide where its' going
+        - at the end of the method, moves each trail peice
+
+
+Tail_pieces/Trail 11
+Inherits from Actor
+Attributes:
+    - overrite symbol/color
+Methods:
+    - move --> changes so it following the cycle & its' movement
+    - 
+
