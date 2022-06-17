@@ -15,7 +15,7 @@ Requirements:
 - If a player collides with their opponent's trail...
   - A "game over" message is displayed in the middle of the screen.
   - The cycles turn white.
-  - Players keep moving and turning but don't run into each other. (???)
+  - Players keep moving and turning but don't run into each other. <-- see professor's Snake example
 
 ## Classes
 We'll try and reach the goal of 16 classes by making a lot of smaller classes and more base classes
