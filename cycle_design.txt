@@ -1,16 +1,16 @@
 Meeting 6/16
 Members Present: Ashley, Hailey
 
+Current Class count: 15
+
 TODO: Split responsibilities, grouping similar classes together, even workload
 
 ** Not exactly sure how the Collision Handler, Hitbox, Grid, and Point classes should interact, there seems to be some overlapping functions there. Like a Hitbox could just be a grid item/Point. Also it seems a bit more complicated than it needs to be, since the GUI only works on a Point based system, where it needs an integer between the 0 and the MAX WINDOW size.
 
 Groups:
-- Director, Collision Handler, Hitbox, Cast (hard)
+- Director, Cast
     - Director calls other classes and runs the game
-    - Making sure the collisions are handled correctly
-        - Collision Handler will check if the Player hitboxes overlap eachother OR can check if Player Point position is within the other Player's Hitbox
-    - The Cast of the two Players/Cycles
+    The Cast of the two Players/Cycles
         - Cast will update the Players (Director will only do self._cast.update() instead of having to move each Player)
 - Window/Graphical Interface, Color (medium)
     - The Window that displays everything
@@ -23,11 +23,11 @@ Groups:
 - Message, Score (easy)
     - Adjust Score to inherit from message (message = {points} <-- updates) 
     - Message will also be used for Game Over (just have message = "Game Over" <-- constant)
-- Grid, Point (easy-medium)
-    - Set up a grid for everything to work on (See how GUI works and see professor's example)
-        - Works on a grid instead of a point system (!!! Will have to work with the Hitbox/Collison Handler class - Hitbox could be a grid 'box', check if items are on the same gridbox/aiming to enter the same grid box)
-    - Point/grid spots
+- Point, Collision Handler, Hitbox (Medium)
         - Player positions will be stored as a Point instead of the simple [x, y] so there can be an additional class
+         - Making sure the collisions are handled correctly
+        - Collision Handler will check if the Player hitboxes overlap eachother OR can check if Player Point position is within the other Player's Hitbox
+        - Hitboxes will be calculated to determine if two Actors have hit eachother
 
 TODO: Figure out more base classes
     - Actor (xy positions, xy velocity, symbol, color, etc)
@@ -138,11 +138,6 @@ Attributes:
     - int score
 Methods:
     - Add points
-
-Grid 7
-Attributes:
-    - [x,y] position on the screen (translates the position to grid spot)
-    - 
 
 Player Interface 8
 Attributes:
