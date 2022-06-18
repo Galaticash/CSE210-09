@@ -33,7 +33,6 @@ Player Input | Moves the Player around the screen, different key_set per Player
 Key_set | A set of keys, given the up/down/left/right value
 Score | Within the Player class, keeps track of the points gained by the Player
 Message | The base class for Score, so the GUI can display any message like the Game Over. Contains the location, font size, color, etc for the GUI to display
-Grid | A grid to keep the cycles on, but needs to be translated back into pixel/points by the GUI
 Point | point/grid location separated into its own class
 Color | colors are separated into its own class
 Window | The GUI of the program, displays everything to the user
@@ -69,7 +68,6 @@ Ethan | -
   - [ ] Tail Piece
   - [ ] Message
   - [ ] Score
-  - [ ] Grid
   - [ ] Point
   - [ ] Color
 
