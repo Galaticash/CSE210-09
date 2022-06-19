@@ -48,7 +48,7 @@ TODO: Assign jobs
 Ashley | Director
 Hailey | -
 Matt | -
-John | -
+John | Score
 Ethan | -
 
 # Week 10 - Cycle Program
