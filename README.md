@@ -41,30 +41,31 @@ Window | The GUI of the program, displays everything to the user
 - Player_input - remake to fit with key_set pyray.is_key_down(key_set.get_up_key())
 
 
-TODO: Assign jobs
-
 | Member | Classes to Program |
 | ------ | ------------------ |
-Ashley | Director
-Hailey | -
-Matt | -
-John | Score
-Ethan | -
+Ashley | Director, Actor (base class for Player, Trail, AND Message), other classes as added
+Hailey | Graphic Interface/Window, Point (x/y position), Color (can use pyray Colors OR python colors (rgb values))
+Matt | key_set, player_input, Player/Cycle, Trail/Trail_piece
+John | Score, Message (base class for Score), Cast
+Ethan | Collision Handler, Hitbox (can be an Attribute of Player and Trail Piece*)
+
+* OR can have another base class from Actor like Actor_collidable (Since Messages inherit from Actor but shouldn't have hitboxes)
 
 # Week 10 - Cycle Program
 ## Team Members in attendance 6/23 (Programming): 
+
 
 ## TODO: Implementation
 - [ ] Code each class out
   - [ ] Director
   - [ ] Collision Handler
-  - [ ] Hitbox?
+  - [ ] Hitbox
   - [ ] Cast
   - [ ] Window/Grahpical Interface
   - [ ] Actor
   - [ ] Player
   - [ ] Player Input
-  - [ ] Key Set 
+  - [ ] Key Set
   - [ ] Tail Piece
   - [ ] Message
   - [ ] Score
