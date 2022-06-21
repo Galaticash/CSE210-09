@@ -54,6 +54,10 @@ Ethan | Collision Handler, Hitbox (can be an Attribute of Player and Trail Piece
 # Week 10 - Cycle Program
 ## Team Members in attendance 6/23 (Programming): 
 
+## Saturday Question  "How did you use method overriding in derived classes in the completed program?"
+Used in the Messages/Score class, override how Score's display Method done (message "Score: " and integer score)
+Used in Trail/Trail Piece, override how the Move Method is performed (does not use user input, follows instead)
+
 
 ## TODO: Implementation
 - [ ] Code each class out
@@ -62,7 +66,7 @@ Ethan | Collision Handler, Hitbox (can be an Attribute of Player and Trail Piece
   - [ ] Hitbox
   - [ ] Cast
   - [ ] Window/Grahpical Interface
-  - [ ] Actor
+  - [X] Actor
   - [ ] Player
   - [ ] Player Input
   - [ ] Key Set
