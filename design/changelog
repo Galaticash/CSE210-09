@@ -1,0 +1,2 @@
+6/17 8pm - Removed Grid because Point and step_size serve the same purpose
+6/20 10pm - Added base class Actor and Director (2/16 classes). A main.py file was also created, but Director will do the same thing if run as the main file
