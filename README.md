@@ -1,10 +1,9 @@
-# Week 9 - Cycle Design
+# Cycle Game Weeks 9 and 10
 ## Team Members: Ashley, Hailey, John, Matt, Ethan
 
 ## Cycle Game
 Cycle is a game where the players try to cut each other off using cycles that leave a trail behind them.
 
-## Team Members in attendance 6/16 (Designing): Ashley, Hailey
 Requirements:
 - Players can move up, down, left and right...
   - Player one moves using the W, S, A and D keys.
@@ -15,6 +14,9 @@ Requirements:
   - A "game over" message is displayed in the middle of the screen.
   - The cycles turn white.
   - Players keep moving and turning but don't run into each other. 
+
+# Week 9 - Cycle Design
+## Team Members in attendance 6/16 (Designing): Ashley, Hailey
 
 ## Classes
 
