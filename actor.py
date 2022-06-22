@@ -48,10 +48,9 @@ class Actor():
         """
         return self._position.get_y()
 
-    def get_symbol(self):
+    def get_display(self):
         """
-            Returns the symbol that is used to display the Actor.
-            For Message class, the same variable can be used, or relabeled to self._message and then this method would need to be overridden.
+            Returns the character or string that is used to display the Actor.
         """
         return self._symbol
 
