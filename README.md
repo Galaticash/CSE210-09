@@ -4,7 +4,6 @@
 ## Cycle Game
 Cycle is a game where the players try to cut each other off using cycles that leave a trail behind them.
 
-# TODO: Design
 ## Team Members in attendance 6/16 (Designing): Ashley, Hailey
 Requirements:
 - Players can move up, down, left and right...
@@ -12,13 +11,12 @@ Requirements:
   - Player two moves using the I, K, J and L keys.
 - Each player's trail grows as they move.
 - Players try to maneuver so the opponent collides with their trail.
-- If a player collides with their opponent's trail...
+- If a player collides with their opponent's trail... <-- see professor's Snake example
   - A "game over" message is displayed in the middle of the screen.
   - The cycles turn white.
-  - Players keep moving and turning but don't run into each other. <-- see professor's Snake example
+  - Players keep moving and turning but don't run into each other. 
 
 ## Classes
-We'll try and reach the goal of 16 classes by making a lot of smaller classes and more base classes
 
 | Class | Job |
 | ----- | --- |
@@ -57,7 +55,6 @@ Ethan | Collision Handler, Hitbox (can be an Attribute of Player and Trail Piece
 ## Saturday Question  "How did you use method overriding in derived classes in the completed program?"
 Used in the Messages/Score class, override how Score's display Method done (message "Score: " and integer score)
 Used in Trail/Trail Piece, override how the Move Method is performed (does not use user input, follows instead)
-
 
 ## TODO: Implementation
 - [ ] Code each class out
