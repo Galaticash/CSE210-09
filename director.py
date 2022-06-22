@@ -12,6 +12,7 @@ class Director():
     """
     def __init__(self):
         self._game_over = False
+        self._window_close = False
         # Add all the constants
         self._max_x = WINDOW_MAX_X
         self._max_y = WINDOW_MAX_Y
@@ -44,27 +45,27 @@ class Director():
         """
             Updates the game based on Player movement and the falling Rocks. 
         """
-        # Checks if the window should close (X button pressed).
-        # [WINDOW Method - makes sure if the user pressed the "x" button, the game will end]
-        if self._window.should_close():
-            self._game_over = True
-        # Otherwise, gameplay as normal.
-        else:
-            # Move all members of the cast
-            # [CAST] self._cast.move()
-            
+        # Move all members of the cast
+        # [CAST] self._cast.move()
+        
+        if not self._game_over:
+            pass
             # Check for collisions
             # [COLLISION] self._collision_handler.check()
 
             # Updates the visuals of the game
             # [WINDOW/GUI] self._window.update(self._cast)
-            pass
 
-    def get_game_over(self):
+        # Checks if the window should close (X button pressed).
+        # [WINDOW Method - makes sure if the user pressed the "x" button, the game will end]
+        self._window_close = self._window.should_close()
+        
+
+    def get_window_close(self):
         """
-            Returns to main if the game has finished.
+            Returns to main if the game window has been closed.
         """
-        return self._game_over
+        return self._window_close
 
     def end_game(self):
         """
@@ -77,6 +78,7 @@ class Director():
 if __name__ == "__main__":
     cycle_game = Director()
     cycle_game.start_game()
-    while not cycle_game.get_game_over():
+    # Slightly different here, window will not close until user presses the "X" button.
+    while not cycle_game.get_window_close():
         cycle_game.update_game()    
     cycle_game.end_game()

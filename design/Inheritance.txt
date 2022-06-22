@@ -1,0 +1,39 @@
+Actor (base class)
+- Constructor (max_x [for POINT], max_y [for POINT], font_size [for GUI], color [for GUI])
+    - saves max x and max y, puts it into the Point position [for screen looping functionality]
+    - self._spawn_point <-- The original Point position for the Actor
+    - self._position <-- The current Point position of the Actor
+    - self._symbol <-- The character used to display the Actor
+    - self._font_size <-- The size the symbol will be displayed in, according to the GUI
+    - self._color <-- The color the symbol will be displayed in, according to the GUI
+- move()
+    - Moves the Actor. Returns nothing. Currently an empty class to be overriden.
+- Getters for each Attribute of Actor
+    - Returns Attributes to the GUI, so it can display the Actor
+
+Message (inherits from Actor, a specific type of Actor)
+    A variation of Actor, an immovable section of Text to display
+- Constructor (inherit from Actor, message) # Add string message to the Constructor
+    - Add the Attribtue self._message <-- message
+- self.get_display
+    - override to return self._message
+
+Score (inherits from Message, a specific type of Message)
+    A variation of Message, immovable and non-colliding
+- Constructor
+    - adds Attribute self._score
+- add_points(self, points): 
+    - self._score += points
+- get_display()
+    - return {self._message} {self._score}
+
+Colliding_Actor (inherits from Actor, a speficic type of Actor)
+    A variation of Actor, is able to collide with others Colliding_Actors
+- Constructor(inherit from Actor)
+    - hitbox sensitivity? How far away something can be from the center Point?
+    - Adds self._hitbox <-- Assumes single character. Calculates size using font_size
+- get_hitbox()
+    - return self._hitbox for the Collision Handler to check collisions
+- collide()
+    - add logic to figure out if it has hit something?
+    - OR this would be better as a method to run when it has collided with something
