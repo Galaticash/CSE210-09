@@ -9,7 +9,7 @@ class Color:
         _alpha (int): The alpha or opacity.
     """
     
-    def __init__(self, red, green, blue, alpha = 255):
+    def __init__(self, color):
         """Constructs a new Color using the specified red, green, blue and alpha values. The alpha 
         value is the color's opacity.
         
@@ -19,10 +19,19 @@ class Color:
             blue (int): A blue value.
             alpha (int): An alpha or opacity.
         """
-        self._red = red
-        self._green = green
-        self._blue = blue 
-        self._alpha = alpha
+        self._COLORS = {"WHITE": [255, 255, 255], "RED": [255, 0, 0], "GREEN": [0, 255, 0], "BLUE": [0, 0, 255]}
+        self._color_text = color
+        self._color = self._COLORS[self._color_text]
+        self._red = self._color[0]
+        self._green = self._color[1]
+        self._blue = self._color[2]
+        self._alpha = 255
+
+    def to_text(self):
+        """
+            Returns the text version of the Color object.
+        """
+        return self._color_text
 
     def to_tuple(self):
         """Gets the color as a tuple of four values (red, green, blue, alpha).

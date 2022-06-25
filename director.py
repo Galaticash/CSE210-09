@@ -1,6 +1,8 @@
-#from [To be implemented - CAST] import Cast
-# frmo [To be implemented - COLLISION HANDLER] import Collision_Handler
-#from [To be implemented - WINDOW/GUI] import Graphical Interface
+from castDeMott import Cast
+from actors.cycleDeMott import *
+from actors.messageDeMott import Message
+from collisionHandlerDeMott import Collision_Handler
+from GraphicInterface import Window
 
 WINDOW_MAX_X = 900
 WINDOW_MAX_Y = 600
@@ -19,48 +21,42 @@ class Director():
         self._font_size = FONT_SIZE
 
         # Create a Window to display things on
-        # self._window = [WINDOW/GUI] Window(self._max_x, self._max_y, self._font_size)
+        self._window = Window(self._max_x, self._max_y)
         # Create a Cast to add Players and Messages to
-        # self._cast = [CAST] Cast()
+        self._cast = Cast()
         # Create a Collision Handler to manage collisions between Actors
-        # self._collision_handler = [COLLISION HANDLER] Collision_Handler()
-    
+        self._collision_handler = Collision_Handler(self._cast)
+
     def start_game(self):
         """
             Begin the Cycle game. Create the two players
         """
-        # TODO: 
-        # [CAST Method - Adds a player to the Cast object. 
-        #   Cast will have each of the Actors to be displayed on the board stored as an Attribute.
-        #   Can add the Scores/Messages inside the add_player method with an inner Method add_message/add_score]
-        # Add Player 1
-        #self._cast.add_player([self._max_x, self._max_y, self._font_size])
+        # Add each of the Players to the Cast.
+        self._cast.add_player(Player(self._max_x, self._max_y, self._font_size))
+        self._cast.add_player(Player2(self._max_x, self._max_y, self._font_size))
 
-        # Add Player 2 - Cycle class is in charge of differentiating spawn_position, etc
-        # TODO: Should Player 2 be another Cycle object or a different class (Cycle2, inherits from Cycle)?
-        #self._cast.add_player([self._max_x, self._max_y, self._font_size], 2)
-        pass
+        # Update the collision handler.
+        self._collision_handler.update_colliders()
 
     def update_game(self):
         """
             Updates the game based on Player movement and the falling Rocks. 
         """
-        # Move all members of the cast
-        # [CAST] self._cast.move()
+        # Move all members of the cast.
+        self._cast.move()
         
         if not self._game_over:
-            pass
-            # Check for collisions
-            # [COLLISION] self._collision_handler.check()
+            # Check for collisions, if the Cycles collide, the game is over.
+            self._game_over = self._collision_handler.check()
+            if self._game_over:
+                self._cast.add_message(Message(self._max_x, self._max_y, self._font_size * 2, "Game Over"))
 
-            # Updates the visuals of the game
-            # [WINDOW/GUI] self._window.update(self._cast)
+        # Updates the visuals of the game.
+        self._window.update(self._cast)
 
         # Checks if the window should close (X button pressed).
-        # [WINDOW Method - makes sure if the user pressed the "x" button, the game will end]
         self._window_close = self._window.should_close()
         
-
     def get_window_close(self):
         """
             Returns to main if the game window has been closed.

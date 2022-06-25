@@ -20,6 +20,12 @@ class Point:
         self._max_x = max_x
         self._max_y = max_y
 
+    def set_position(self, x, y):
+        """
+            Changes the x and y position of the point.
+        """
+        self._x = x
+        self._y = y
 
     def get_x(self):
         """Gets the horizontal distance.

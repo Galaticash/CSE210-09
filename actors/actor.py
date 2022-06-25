@@ -1,6 +1,5 @@
-# from [COLOR] import Color, pyray <-- import only once?
-# from [POINT] import Point
-import pyray
+from color import Color
+from point import Point
 
 class Actor():
     """
@@ -10,26 +9,30 @@ class Actor():
         Has a symbol to represent itself with, can be a single character or a string of them (Message).
         Has Getters for each Attribute so the GUI can properly display the Actor.
     """
-    def __init__(self, max_x, max_y, font_size, color = pyray.RAYWHITE):
+    def __init__(self, max_x, max_y, font_size, color = "WHITE"):
         self._max_x = max_x
         self._max_y = max_y
         # TODO: some calculations for spawn point
-        # self._spawn_point = [import Point] Point(max_x, max_y, 0, 0) <-- give max_x/max_y for loop over, then x/y position to set OR use a method test_point.set_position(x, y)
+        self._spawn_point = Point(max_x, max_y, max_x//2, max_y//2)
         self._position = self._spawn_point # Could replay the game and set the actor back to the start
         self._velocity = [0, 0] # The X and Y velocity
         self._symbol = "#"
         self._font_size = font_size
-        self._color = pyray.RAYWHITE
-        #Color()
-        #self._color.set_color("WHITE")
+        self._base_color = Color(color)
+        self._color = self._base_color
 
-    def move(self):
+    def move(self, x, y):
         """
-            Moves the Actor. Doesn't do anything right now
+            Moves the Actor to a specified x/y coordinate.
         """
-        #self._position.set_position(self._position.get_x(), self._position.get_y())
-        pass
-       
+        self._position.set_position(x, y)
+    
+    def get_point_position(self):
+        """
+            Returns the Point position of the Actor.
+        """
+        return self._position
+
     def get_x(self):
         """
             Returns the X position of the Actor.
@@ -42,11 +45,16 @@ class Actor():
         """
         return self._position.get_y()
 
+    def set_velocity(self, new_velocity):
+        """
+            Given a velocity [x, y], changes the Actor's velocity.
+        """
+        self._velocity = new_velocity
+
     def get_velocity(self):
         """
-            Gets the current dx/dy of the Actor. Doesn't do anything right now
+            Gets the current dx/dy of the Actor as [dx, dy].
         """
-        # return self._velocity --> could also split into get_velocity_x/y if that works better?
         return self._velocity
  
     def get_display(self):
@@ -61,9 +69,17 @@ class Actor():
         """
         return self._font_size
 
+    def set_color(self, color):
+        self._color = Color(color)
+
+    def reset_color(self):
+        """
+            Resets the color of the Actor, from turning red when hit.
+        """
+        self._color = self._base_color
+
     def get_color(self):
         """
-            Returns the pyray color of the Actor.
+            Returns the tuple Color of the Actor.
         """
-        return self._color
-        #return self._color.get_color() <-- get pyray Color/rbg color directly from Color class
+        return self._color.to_tuple()
