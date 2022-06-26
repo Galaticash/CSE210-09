@@ -52,30 +52,21 @@ Ethan | Collision Handler, Hitbox (can be an Attribute of Player and Trail Piece
 * OR can have another base class from Actor like Actor_collidable (Since Messages inherit from Actor but shouldn't have hitboxes)
 
 # Week 10 - Cycle Program
-## Team Members in attendance 6/23 (Programming): 
+## Team Members in attendance 6/23 (Programming): Ashley, Hailey
 
 ## Saturday Question  "How did you use method overriding in derived classes in the completed program?"
 Used in the Messages/Score class, override how Score's display Method done (message "Score: " and integer score)
 Used in Trail/Trail Piece, override how the Move Method is performed (does not use user input, follows instead)
 
-## TODO: Implementation
-- [ ] Code each class out
-  - [ ] Director
-  - [ ] Collision Handler
-  - [ ] Hitbox
-  - [ ] Cast
-  - [ ] Window/Grahpical Interface
-  - [X] Actor
-  - [ ] Player
-  - [ ] Player Input
-  - [ ] Key Set
-  - [ ] Tail Piece
-  - [ ] Message
-  - [ ] Score
-  - [ ] Point
-  - [ ] Color
+## Implementation
+| Member | Classes Programmed |
+| ------ | ------------------ |
+Ashley | main, Director, Actor, all classes with DeMott suffix (cast, collision_handler, player_input, key_set, hitbox, collision_actor, Player, Player 2, Message, Score, Trail_Piece)
+Hailey | Graphic Interface/Window, Point (x/y position), Color (using tuple)
+
+Total Classes: 16
 
 ## Extra
-- Enhanced scoring and game reset.
+- Enhanced scoring and game reset. (press Play again)
 - Enhanced game play and game over messages.
 - Enhanced game display, e.g. cycle and trails
