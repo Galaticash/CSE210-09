@@ -24,3 +24,6 @@ class Trail_Piece(Collision_Actor):
         
         # Update the hitbox's position.
         self.update_hitbox()
+
+    def set_color(self, color):
+        self._color = Color(color)

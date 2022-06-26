@@ -11,7 +11,7 @@ class Player(Collision_Actor):
         super().__init__(max_x, max_y, font_size, color)
         # Reset Base Color, Color, and Symbol
         self._base_color = Color("BLUE")
-        self._color = self._base_color
+        self._color = copy.copy(self._base_color)
         self._symbol = "@"
 
         # Give Player a Player_Input to determine velocity/movement
@@ -26,8 +26,7 @@ class Player(Collision_Actor):
         self._position = self._spawn_point
         
         # Create a Score object
-        self._score = Score(max_x, max_y, self._font_size, "Player One:")        
-        self._score.move(int(self._max_x * 1/12), 0)
+        self._score = Score(max_x, max_y, [int(self._max_x * 1/12), 0], self._font_size, "Player One:")
         
         # Initialize the Trail Piece list
         self._trail = []
@@ -39,12 +38,21 @@ class Player(Collision_Actor):
         """
         return self._trail
 
-    def create_tail(self):
+    def create_trail(self):
         """
             Create the initial trail, of size self._trail_size
         """
         for trail_piece in range(self._trail_size):
             self.add_trail()
+
+    def remake_trail(self):
+        """
+            Deletes the current tail and creates it from scratch.
+        """
+        # Double check if Python supports deletion/freeing up memory
+        del self._trail
+        self._trail = []
+        self.create_trail()
 
     def get_trail_ahead(self, piece_index):
         """
@@ -94,7 +102,7 @@ class Player(Collision_Actor):
             Gets the current velocity of the Player. Relies on Player Input. 
             If Player Input is [0, 0], continues travelling in the previous direction.
         """
-        self._velocity_prev = self._velocity[:]
+        self._velocity_prev = copy.copy(self._velocity)
         new_velocity = self._player_input.get_direction()
         
         # If there has been user input to change the direction,
@@ -112,6 +120,22 @@ class Player(Collision_Actor):
         # Update the positions of the Trail Pieces.
         self.move_trail()
 
+    def respawn(self):
+        """
+            Respawns the Player and remakes their trail.
+        """
+        # Copy by value only.
+        self._position = copy.copy(self._spawn_point)
+        self._velocity = [0, -1]
+        self.reset_color()
+        self.remake_trail()
+
+    def win(self):
+        """
+            Adds points to the Player's score based on what it hit.
+        """
+        self._score.add_points(1)
+
     def get_score(self):
         """
             Returns the Player's Score object.
@@ -122,6 +146,7 @@ class Player(Collision_Actor):
         """
             Sets the color of the Player and the Trail Pieces.
         """
+        print("player color change")
         self._color = Color(color)
         for trail_piece in self._trail:
             trail_piece.set_color(color)
@@ -141,5 +166,4 @@ class Player2(Player):
         self._position = self._spawn_point
         
         # Overrite the Score and its Position
-        self._score = Score(max_x, max_y, self._font_size, "Player Two:")   
-        self._score.move(int(max_x * 7/12), 0)
+        self._score = Score(max_x, max_y, [int(max_x * 7/12), 0], self._font_size, "Player Two:")

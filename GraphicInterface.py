@@ -31,6 +31,27 @@ class Window():
         """
         pyray.draw_text(actor.get_display(), actor.get_x(), actor.get_y(), actor.get_font_size(), actor.get_color())
 
+    def _print_button(self, button):
+        """
+            Prints the given button on the board. Has a box surrounding it to differentiate itself as a button.
+        """
+        #pyray.draw_rectangle(button.get_x(), button.get_y(), len(button.get_display()) * button.get_font_size(), button.get_font_size(), button.get_color())
+        pyray.draw_text(button.get_display(), button.get_x(), button.get_y(), button.get_font_size(), button.get_color())
+        self._print_hitbox(button.get_hitbox())
+
+    def _print_hitbox(self, hitbox):
+        """
+            Draws a given hitbox with red lines.
+        """
+        # Draw the top line
+        pyray.draw_line(hitbox.left, hitbox.top, hitbox.right, hitbox.top, pyray.RED)
+        # Bottom
+        pyray.draw_line(hitbox.left, hitbox.bottom, hitbox.right, hitbox.bottom, pyray.RED)
+        # Left
+        pyray.draw_line(hitbox.left, hitbox.top, hitbox.left, hitbox.bottom, pyray.RED)
+        # Right
+        pyray.draw_line(hitbox.right, hitbox.top, hitbox.right, hitbox.bottom, pyray.RED)
+
     def update(self, cast):
         """
             Draws a frame of the Game given the actors.
@@ -46,12 +67,17 @@ class Window():
         # Updates the Players
         for player in cast.get_players():
             self._print_actor(player)
+            self._print_hitbox(player.get_hitbox())
             for trail_piece in player.get_trail():
                 self._print_actor(trail_piece)
+                self._print_hitbox(trail_piece.get_hitbox())
 
         # Updates the Messages
         for message in cast.get_messages():
             self._print_actor(message)
+
+        for button in cast.get_buttons():
+            self._print_button(button)
 
         pyray.end_drawing()
 

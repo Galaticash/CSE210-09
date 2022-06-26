@@ -1,5 +1,6 @@
 from color import Color
 from point import Point
+import copy
 
 class Actor():
     """
@@ -16,11 +17,11 @@ class Actor():
         self._spawn_point = Point(max_x, max_y, max_x//2, max_y//2)
         self._position = self._spawn_point # Could replay the game and set the actor back to the start
         self._velocity = [0, 0] # The X and Y velocity
-        self._velocity_prev = self._velocity[:] # Copy values only
+        self._velocity_prev = copy.copy(self._velocity) # Copy values only
         self._symbol = "#"
         self._font_size = font_size
         self._base_color = Color(color)
-        self._color = self._base_color
+        self._color = copy.copy(self._base_color)
 
     def move(self, x, y):
         """
@@ -80,14 +81,14 @@ class Actor():
     def set_color(self, color):
         """
             Sets the color of the Actor.
-        """
+        """        
         self._color = Color(color)
 
     def reset_color(self):
         """
             Resets the color of the Actor, from turning red when hit.
         """
-        self.set_color(self._base_color)
+        self._color = copy.copy(self._base_color)
 
     def get_color(self):
         """

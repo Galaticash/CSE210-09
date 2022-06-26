@@ -33,11 +33,17 @@ class Collision_Handler():
 
         # Checks if the Player heads have collided with anything.
         if self.check_head_collision(self._players[0]): 
+            # The Player who didn't collide wins.
+            self._players[1].win()
+
             # Set each Player's color to White
             for player in self._players:
                 player.set_color("WHITE")
             return True
         elif self.check_head_collision(self._players[1]):
+            # The Player who didn't collide wins.
+            self._players[0].win()
+            
             # Set each Player's color to White
             for player in self._players:
                 player.set_color("WHITE")
