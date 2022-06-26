@@ -77,17 +77,18 @@ class Director():
         self._window_close = self._window.should_close()
 
     def add_game_over(self):
-        message_font_size = self._font_size * 2
-        center = [(self._max_x - (int(len("Game Over")/2 * message_font_size)))//2, (self._max_y - message_font_size)//2]
-        x_offset = message_font_size * 3
-        y_offset = message_font_size
+        game_over_size = self._font_size * 2
+        button_size = int(self._font_size * 1.5)
+        center = [(self._max_x - (int(len("Game Over")/2 * game_over_size)))//2, (self._max_y - game_over_size)//2]
+        x_offset = game_over_size * 2
+        y_offset = int(game_over_size * 1.5)
         
         # Add the Game Over message
-        self._cast.add_message(Message(self._max_x, self._max_y, center, message_font_size, "Game Over"))
+        self._cast.add_message(Message(self._max_x, self._max_y, center, game_over_size, "Game Over"))
         
         # Add Play Again and Exit Buttons to the cast
-        self._cast.add_button("PLAY_AGAIN", Button(self._max_x, self._max_y, [center[0] - x_offset, center[1] + y_offset], message_font_size//2, "Play Again"))
-        self._cast.add_button("EXIT", Button(self._max_x, self._max_y, [center[0] + x_offset, center[1] + y_offset], message_font_size, "Exit"))
+        self._cast.add_button("PLAY_AGAIN", Button(self._max_x, self._max_y, [center[0] - (x_offset//2), center[1] + y_offset], button_size, "Play Again"))
+        self._cast.add_button("EXIT", Button(self._max_x, self._max_y, [center[0] + (2 * x_offset), center[1] + y_offset], button_size, "Exit"))
 
     def replay(self):
         """

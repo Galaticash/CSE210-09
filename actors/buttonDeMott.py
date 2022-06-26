@@ -4,7 +4,7 @@ from hitboxDeMott import Hitbox
 class Button(Message):
     def __init__(self, max_x, max_y, font_size, message, color="WHITE"):
         super().__init__(max_x, max_y, font_size, message, color)
-        self._hitbox = Hitbox(len(self._message), self._font_size)
+        self._hitbox = Hitbox(len(self._message)//2, self._font_size//2, 15)
         self._hitbox.update(self._position)
 
     def get_hitbox(self):

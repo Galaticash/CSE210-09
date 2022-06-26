@@ -35,7 +35,7 @@ class Window():
         """
             Prints the given button on the board. Has a box surrounding it to differentiate itself as a button.
         """
-        #pyray.draw_rectangle(button.get_x(), button.get_y(), len(button.get_display()) * button.get_font_size(), button.get_font_size(), button.get_color())
+        pyray.draw_rectangle(button.get_hitbox().left, button.get_hitbox().top, button.get_hitbox().right - button.get_hitbox().left, button.get_hitbox().bottom - button.get_hitbox().top, pyray.RED)
         pyray.draw_text(button.get_display(), button.get_x(), button.get_y(), button.get_font_size(), button.get_color())
         self._print_hitbox(button.get_hitbox())
 
@@ -67,10 +67,8 @@ class Window():
         # Updates the Players
         for player in cast.get_players():
             self._print_actor(player)
-            self._print_hitbox(player.get_hitbox())
             for trail_piece in player.get_trail():
                 self._print_actor(trail_piece)
-                self._print_hitbox(trail_piece.get_hitbox())
 
         # Updates the Messages
         for message in cast.get_messages():
