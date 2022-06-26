@@ -2,9 +2,12 @@ from actors.messageDeMott import Message
 from hitboxDeMott import Hitbox
 
 class Button(Message):
+    """
+        A type of Message that returns if the cursor has been clicked in its Hitbox.
+    """
     def __init__(self, max_x, max_y, font_size, message, color="WHITE"):
         super().__init__(max_x, max_y, font_size, message, color)
-        self._hitbox = Hitbox(len(self._message)//2, self._font_size//2, 15)
+        self._hitbox = Hitbox(len(self._message)//2, self._font_size, 15)
         self._hitbox.update(self._position)
 
     def get_hitbox(self):
@@ -15,6 +18,7 @@ class Button(Message):
 
     def pressed(self, cursor_position):
         """
-            Returns if the button hitbox has been pressed (The cursor clicks inside the hitbox range)
+            Returns if the button hitbox has been pressed.
+             (The cursor clicks inside the hitbox range)
         """
         return self._hitbox.is_hit(cursor_position)

@@ -15,7 +15,9 @@ class Director():
         Directs the inner workings of the Cycle game.
     """
     def __init__(self):
+        # Determine if the game is over.
         self._game_over = False
+        # Determine if the window should close (exit program).
         self._window_close = False
         # Add all the constants
         self._max_x = WINDOW_MAX_X
@@ -24,8 +26,10 @@ class Director():
 
         # Create a Window to display things on
         self._window = Window(self._max_x, self._max_y)
+
         # Create a Cast to add Players and Messages to
         self._cast = Cast()
+
         # Create a Collision Handler to manage collisions between Actors
         self._collision_handler = Collision_Handler(self._cast)
 
@@ -34,7 +38,7 @@ class Director():
 
     def start_game(self):
         """
-            Begin the Cycle game. Create the two players
+            Begin the Cycle game. Create the two players.
         """
         # Add each of the Players to the Cast.
         self._cast.add_player(Player(self._max_x, self._max_y, self._font_size))
@@ -45,7 +49,9 @@ class Director():
 
     def update_game(self):
         """
-            Updates the game based on Player movement and the falling Rocks. 
+            Updates the game based on Player movement. If there
+             is a collision, the game ends and the user is given
+             the option to play again (keeping the previous scores).
         """
         # Move all members of the cast.
         self._cast.move_players()
@@ -59,14 +65,17 @@ class Director():
             # Check for "Play Again" or "Exit" click            
             mouse_position = self._mouse.click_position()
 
-            # If the mouse was clicked
+            # If the mouse was clicked,
             if not (mouse_position == None):
                 # Check if the user chose to play again (based on which button is clicked).
                 play_again = self._cast.check_replay_buttons(mouse_position)
+                # If the user actually pressed a button,
                 if not (play_again == None):
                     if play_again:
+                        # Reset the game if "Play Again" was clicked.
                         self.replay()
                     else:
+                        # Exit the game if "Exit" was clicked.
                         self._window_close = True
                         return
 
@@ -77,16 +86,20 @@ class Director():
         self._window_close = self._window.should_close()
 
     def add_game_over(self):
+        """
+            Adds the "Game Over" Menu to the displayed cast.
+        """
+        # Lots of math to determine the location, would be better if it was more concise.
         game_over_size = self._font_size * 2
         button_size = int(self._font_size * 1.5)
         center = [(self._max_x - (int(len("Game Over")/2 * game_over_size)))//2, (self._max_y - game_over_size)//2]
         x_offset = game_over_size * 2
         y_offset = int(game_over_size * 1.5)
         
-        # Add the Game Over message
+        # Add the Game Over Message.
         self._cast.add_message(Message(self._max_x, self._max_y, center, game_over_size, "Game Over"))
         
-        # Add Play Again and Exit Buttons to the cast
+        # Add Play Again and Exit Buttons.
         self._cast.add_button("PLAY_AGAIN", Button(self._max_x, self._max_y, [center[0] - (x_offset//2), center[1] + y_offset], button_size, "Play Again"))
         self._cast.add_button("EXIT", Button(self._max_x, self._max_y, [center[0] + (2 * x_offset), center[1] + y_offset], button_size, "Exit"))
 
@@ -95,8 +108,12 @@ class Director():
             Resets the game, but keeps the current scores.
         """
         self._game_over = False
+
+        # Removes game_over cast members (Game Over menu).
         self._cast.remove_game_over()
         self._cast.remove_buttons()
+
+        # Resets the Player Point positions, Trails, and Color
         self._cast.reset_players()
     
     def get_window_close(self):

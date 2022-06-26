@@ -1,17 +1,26 @@
 class Collision_Handler():
+    """
+        Handles the Collisions of the game, given a Cast of Colliding Actors.
+    """
     def __init__(self, cast):
         self._cast = cast
+        # Gets only the Players/Colliders.
         self._players = self._cast.get_players()
     
     def update_colliders(self):
+        """
+            Double checks if the Cast has added new Players/Colliders.
+        """
         self._colliders = self._cast.get_players()
 
     def check_head_collision(self, player):
         """
             Checks if the Player's head has collided with the other Player.
         """
-        # Check that there are two Players.
+        # Check that there are two Players. 
+        # Otherwise I'll have to write something else.
         assert(len(self._colliders) == 2)
+
         player_two = self._players[1]
         if player == self._players[1]:
             player_two = self._players[0]
@@ -26,10 +35,13 @@ class Collision_Handler():
                 return True
 
     def check(self):
+        """
+            Checks if there has been a collision between the two Players.
+        """
         self.update_colliders()
         
         # TODO: More dynamically check collisions, check only close ones? Check each one against each other collider (VERY inefficient)?
-        # TODO: Different return values to tell Director which Player won/lost
+        # TODO: Different return values to tell Director which Player won/lost --> currently handled here?
 
         # Checks if the Player heads have collided with anything.
         if self.check_head_collision(self._players[0]): 
@@ -41,7 +53,7 @@ class Collision_Handler():
                 player.set_color("WHITE")
             return True
         elif self.check_head_collision(self._players[1]):
-            # The Player who didn't collide wins.
+            # The Player who didn't collide wins a point.
             self._players[0].win()
             
             # Set each Player's color to White

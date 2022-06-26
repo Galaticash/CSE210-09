@@ -1,6 +1,9 @@
 import pyray
 
 class Key_Set():
+    """
+        A set of keys to determine the up, down, left, and right directions.
+    """
     def __init__(self, keys):
         self._up_key = keys[0] # W
         self._left_key = keys[1] # A
@@ -8,28 +11,45 @@ class Key_Set():
         self._right_key = keys[3] # D
 
     def get_up(self):
+        """
+            Returns the 'up' key
+        """
         return self._up_key
 
     def get_down(self):
+        """
+            Returns the 'down' key
+        """
         return self._down_key
 
     def get_left(self):
+        """
+            Returns the 'left' key
+        """
         return self._left_key
 
     def get_right(self):
+        """
+            Returns the 'right' key
+        """
         return self._right_key
 
 class Player_Input():
+    """
+        Determines if the user has pressed 
+         a direction key (up, down, left, right)
+         but only allows the Player to move in one
+         direction at a time (up/down or left/right)
+    """
     def __init__(self, keys):
         self._keys = Key_Set(keys)
-        # Player 1: 
-        # Player 2: [pyray.KEY_I, pyray.KEY_J, pyray.KEY_K, pyray.KEY_L]
         self._dx = 0
         self._dy = 0
 
     def set_keys(self, new_keys):
         """
-            Given an array of 4 pyray keys, changes the up/down and left/right buttons
+            Given an array of 4 pyray keys, changes the 
+             up, down, left, and right buttons.
         """
         self._keys = Key_Set(new_keys)
 

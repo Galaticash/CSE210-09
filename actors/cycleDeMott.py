@@ -7,6 +7,9 @@ from actors.scoreDeMott import Score
 TRAIL_SIZE = 5
 
 class Player(Collision_Actor):
+    """
+        The Player/Cycle that is controlled by the user.
+    """
     def __init__(self, max_x, max_y, font_size, color="WHITE"):
         super().__init__(max_x, max_y, font_size, color)
         # Reset Base Color, Color, and Symbol
@@ -113,7 +116,8 @@ class Player(Collision_Actor):
 
     def move(self):
         """
-            Moves the Player based on keyboard input, loops to other side of the screen.
+            Moves the Player based on keyboard input, 
+             loops to other side of the screen (in Point class).
         """
         super().move()
         
@@ -152,6 +156,9 @@ class Player(Collision_Actor):
             trail_piece.set_color(color)
 
 class Player2(Player):
+    """
+        The second Player/Cycle controlled with a different set of keys.
+    """
     def __init__(self, max_x, max_y, font_size, color="WHITE"):
         super().__init__(max_x, max_y, font_size, color)
         # Overrite the Base Color, Color

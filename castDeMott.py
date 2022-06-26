@@ -11,6 +11,7 @@ class Cast():
     def add_player(self, new_player):
         """
             Adds a new player to the Cast's list of Players.
+            Also creates the trail pieces for the Player.
         """
         new_player.create_trail()
         self._players.append(new_player)
@@ -55,6 +56,10 @@ class Cast():
         self._messages.pop()
 
     def add_button(self, type, new_button):
+        """
+            Adds a new button to the Cast.
+        """
+        # Checks that the new_button is either "PLAY AGAIN" or "EXIT"
         assert(type == self._BUTTON_NAMES[0] or type == self._BUTTON_NAMES[1])
         self._buttons[type] = new_button
 
@@ -84,5 +89,8 @@ class Cast():
             return None
 
     def remove_buttons(self):
+        """
+            Removes the buttons from the Cast.
+        """
         del self._buttons
         self._buttons = {}
