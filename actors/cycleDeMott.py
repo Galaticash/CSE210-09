@@ -43,7 +43,6 @@ class Player(Collision_Actor):
         """
             Create the initial trail, of size self._trail_size
         """
-        print(f"Head at: [{self._position.get_x()}, {self._position.get_y()}]")
         for trail_piece in range(self._trail_size):
             self.add_trail()
 
@@ -74,7 +73,6 @@ class Player(Collision_Actor):
 
         # Create a new Point based on the ahead's position Point.
         new_position = Point(self._max_x, self._max_y, ahead._position.get_x(), ahead._position.get_y())
-        print(f"Last Item: {len(self._trail)} at [{new_position.get_x()}, {new_position.get_y()}]")
         
         # Adjust the position to be one font_size space behind (opposite of velocity)
         new_position.add_velocity(((ahead._velocity[0]) * -1) * (self._font_size), ((ahead._velocity[1]) * -1) * (self._font_size))
@@ -87,9 +85,9 @@ class Player(Collision_Actor):
             Updates the position of each Trail Piece.
         """
         for trail_index in range(0, len(self._trail)):
-            ahead_velocity = self.get_trail_ahead(trail_index).get_previous_velocity()
-            self._trail[trail_index].set_velocity(ahead_velocity)
-            self._trail[trail_index].move()
+            ahead = self.get_trail_ahead(trail_index)
+            self._trail[trail_index].set_velocity(ahead.get_previous_velocity())
+            self._trail[trail_index].move(ahead)
            
     def get_velocity(self):
         """

@@ -14,3 +14,13 @@ class Trail_Piece(Collision_Actor):
         # TESTING
         # Velocity adjusted by Player in move_trail Method
         # Velocity is still multiplied, but now stays on the grid.. weird
+
+    def move(self, ahead):
+        self._position = Point(self._max_x, self._max_y, ahead.get_x(), ahead.get_y())
+        self.get_velocity()
+
+        # Update the Actor's position
+        self._position.add_velocity(self._velocity[0] * -1  * self._font_size, self._velocity[1] * -1  * self._font_size)
+        
+        # Update the hitbox's position.
+        self.update_hitbox()
